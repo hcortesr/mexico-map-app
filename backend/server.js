@@ -50,22 +50,34 @@ const app = express();
 
 app.use(morgan('dev'));
 
-app.get('/info', (req, res) => { // Población total: 1002000001 | El 'fetch' solo funciona con 16 estados a la vez.
+app.get('/info', async (req, res) => { // Población total: 1002000001 | El 'fetch' solo funciona con 16 estados a la vez.
     const { indicator } = req.query
-    const url = `https://www.inegi.org.mx/app/api/indicadores/desarrolladores/jsonxml/INDICATOR/${indicator}/es/${STATE_STRING}/true/BISE/2.0/${API_KEY}?type=json`;
 
-    console.log(url);
-    fetch(url)
-        .then(r => r.json())
-        .then(data => {
-            console.log(data);
-            res.json(data);
-        })
-        .catch(error => {
-            console.log("ERROR FATAL");
-            res.send(error);
-        })
+    // Leer primer indicador
+    let url = `https://www.inegi.org.mx/app/api/indicadores/desarrolladores/jsonxml/INDICATOR/${indicator}/es/${STATE_STRING_1}/false/BISE/2.0/${API_KEY}?type=json`;
+    const data1 = await fetch(url);
+    const data1JSON = await data1.json(); // En series de tiempo, las observaciones se devuelven en orden, y primero las del primer estado.
 
+    // Leer primer indicador
+    url = `https://www.inegi.org.mx/app/api/indicadores/desarrolladores/jsonxml/INDICATOR/${indicator}/es/${STATE_STRING_2}/false/BISE/2.0/${API_KEY}?type=json`;
+    const data2 = await fetch(url);
+    const data2JSON = await data2.json(); // En series de tiempo, las observaciones se devuelven en orden, y primero las del primer estado.
+
+    url = `https://www.inegi.org.mx/app/api/indicadores/desarrolladores/jsonxml/INDICATOR/${indicator}/es/${STATE_STRING_3}/false/BISE/2.0/${API_KEY}?type=json`;
+    const data3 = await fetch(url);
+    const data3JSON = await data3.json(); // En series de tiempo, las observaciones se devuelven en orden, y primero las del primer estado.
+
+    resDict = {};
+    data1JSON["Series"][0]['OBSERVATIONS'].forEach(value => {
+        resDict[value["COBER_GEO"]] = { ...resDict[value["COBER_GEO"]], [value["TIME_PERIOD"]]: value["OBS_VALUE"] }
+    })
+    data2JSON["Series"][0]['OBSERVATIONS'].forEach(value => {
+        resDict[value["COBER_GEO"]] = { ...resDict[value["COBER_GEO"]], [value["TIME_PERIOD"]]: value["OBS_VALUE"] }
+    })
+    data3JSON["Series"][0]['OBSERVATIONS'].forEach(value => {
+        resDict[value["COBER_GEO"]] = { ...resDict[value["COBER_GEO"]], [value["TIME_PERIOD"]]: value["OBS_VALUE"] }
+    })
+    res.send(resDict);
 
 })
 
