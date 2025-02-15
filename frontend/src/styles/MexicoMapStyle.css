@@ -1,0 +1,67 @@
+main {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    /* background-color: red; */
+
+}
+
+#MexicoMapContainer {
+    /* background-color: red; */
+    color: green;
+
+}
+
+
+
+#info-map {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#info-map-content {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+
+}
+
+#MXSON:hover,
+#MXBCN:hover,
+#MXCHH:hover,
+#MXCOA:hover,
+#MXTAM:hover,
+#MXNLE:hover,
+#MXROO:hover,
+#MXCAM:hover,
+#MXTAB:hover,
+#MXCHP:hover,
+#MXCOL:hover,
+#MXNAY:hover,
+#MXBCS:hover,
+#MXSIN:hover,
+#MXYUC:hover,
+#MXVER:hover,
+#MXJAL:hover,
+#MXMIC:hover,
+#MXGRO:hover,
+#MXOAX:hover,
+#MXMEX:hover,
+#MXPUE:hover,
+#MXMOR:hover,
+#MXQUE:hover,
+#MXHID:hover,
+#MXGUA:hover,
+#MXSLP:hover,
+#MXZAC:hover,
+#MXAGU:hover,
+#MXDUR:hover,
+#MXTLA:hover,
+#MXCMX:hover {
+    color: rgb(138, 206, 35);
+
+}
