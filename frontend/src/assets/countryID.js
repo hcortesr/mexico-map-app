@@ -1,5 +1,4 @@
-
-const stateID = {
+export const stateID = {
     'nacional': '0700',
     'aguascalientes': '07000001',
     'baja_california': '07000002',
@@ -34,13 +33,3 @@ const stateID = {
     'yucatan': '07000031',
     'zacatecas': '07000032'
 };
-const stateString1 = "0700,07000001,07000002,07000003,07000004,07000005,07000006,07000007,07000008,07000009";
-const stateString2 = "07000010,07000011,07000012,07000013,07000014,07000015,07000016,07000017,07000018,07000019"
-const stateString3 = "07000020,07000021,07000022,07000023,07000024,07000025,07000026,07000027,07000028,07000029,07000030,07000031,07000032";
-
-const s = [];
-
-for (const x in stateID) {
-    s.push(stateID[x])
-}
-console.log(s.join(','))

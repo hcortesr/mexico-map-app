@@ -1,5 +1,10 @@
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
+
+const corsOptions = {
+    origin: ["http://localhost:5173"],
+}
 
 const API_KEY = "68ec4bea-867c-69f0-2193-ea87720073f2";
 
@@ -48,6 +53,8 @@ const STATE_STRING_3 = "07000020,07000021,07000022,07000023,07000024,07000025,07
 
 const app = express();
 
+
+app.use(cors(corsOptions));
 app.use(morgan('dev'));
 
 app.get('/info', async (req, res) => { // Población total: 1002000001 | El 'fetch' solo funciona con 16 estados a la vez.

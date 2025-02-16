@@ -12,6 +12,7 @@ function App() {
     <main>
       <MexicoMap />
 
+
     </main>
   )
 }
