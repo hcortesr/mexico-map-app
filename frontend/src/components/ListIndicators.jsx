@@ -2,11 +2,11 @@ import { AppContext } from "../context/AppProvider";
 import { useContext } from "react";
 
 
-export function ListIndicators() {
+export function ListIndicators({ className }) {
     const context = useContext(AppContext);
 
     return (
-        <select name="" id="" onChange={(e) => context.setIndicator(e.target.value)}>
+        <select className={className} name="" id="" onChange={(e) => context.setIndicator(e.target.value)}>
             <option value="1002000001">Población total</option>
             <option value="1002000002">Población total hombres</option>
             <option value="1002000003">Población total mujeres</option>

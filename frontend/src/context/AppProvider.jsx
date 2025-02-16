@@ -23,6 +23,7 @@ export function AppProvider({ children }) {
     const [indicatorInfo, setIndicatorInfo] = useState({});
     const [period, setPeriod] = useState("2020");
     const [infoContent, setInfoContent] = useState(null);
+    const [selectedState, setSelectedState] = useState("");
 
     const updateInfoContent = (selectedCountry) => {
         setInfoContent(indicatorInfo[stateID[selectedCountry]][period]);
@@ -30,6 +31,7 @@ export function AppProvider({ children }) {
 
     // Parte encargada de cambiar el cursor a uno de carga.
     const [isLoading, setIsLoading] = useState(false);
+
 
     useEffect(() => {
         setIsLoading(true);
@@ -45,7 +47,7 @@ export function AppProvider({ children }) {
     }, [indicator]);
 
     return (
-        <AppContext.Provider value={{ infoBoxX, infoBoxY, handleMouseMove, showInfoBox, setShowInfoBox, infoContent, updateInfoContent, indicatorInfo, period, indicator, setIndicator, setPeriod, isLoading }}>
+        <AppContext.Provider value={{ infoBoxX, infoBoxY, handleMouseMove, showInfoBox, setShowInfoBox, infoContent, updateInfoContent, indicatorInfo, period, indicator, setIndicator, setPeriod, isLoading, setSelectedState, selectedState }}>
             {children}
         </AppContext.Provider>
     )
