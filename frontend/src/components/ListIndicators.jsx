@@ -6,7 +6,7 @@ export function ListIndicators() {
     const context = useContext(AppContext);
 
     return (
-        <select className="opt-selector border-2 border-black" name="" id="" onChange={(e) => context.setIndicator(e.target.value)}>
+        <select name="" id="" onChange={(e) => context.setIndicator(e.target.value)}>
             <option value="1002000001">Población total</option>
             <option value="1002000002">Población total hombres</option>
             <option value="1002000003">Población total mujeres</option>

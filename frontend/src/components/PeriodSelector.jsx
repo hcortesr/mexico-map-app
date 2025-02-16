@@ -6,7 +6,7 @@ export function PeriodSelector() {
 
     if (indicatorInfo["0700"]) {
         return (
-            <select className="opt-selector" name="" id="" onChange={(e) => setPeriod(e.target.value)}>
+            <select name="" id="" onChange={(e) => setPeriod(e.target.value)}>
                 {Object.keys(indicatorInfo["0700"]).reverse().map((value, index) => {
                     return <option value={value} key={index}>{value}</option>
                 })}
