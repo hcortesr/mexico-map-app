@@ -74,17 +74,36 @@ app.get('/info', async (req, res) => { // Población total: 1002000001 | El 'fet
     const data3 = await fetch(url);
     const data3JSON = await data3.json(); // En series de tiempo, las observaciones se devuelven en orden, y primero las del primer estado.
 
+    console.log("))))))))))))))");
+    console.log();
+
+    // data1JSON["Series"][0]['OBSERVATIONS'].forEach(value => {
+    //     console.log(value["OBS_VALUE"]);
+    // })
+
     resDict = {};
-    data1JSON["Series"][0]['OBSERVATIONS'].forEach(value => {
-        resDict[value["COBER_GEO"]] = { ...resDict[value["COBER_GEO"]], [value["TIME_PERIOD"]]: value["OBS_VALUE"] }
-    })
-    data2JSON["Series"][0]['OBSERVATIONS'].forEach(value => {
-        resDict[value["COBER_GEO"]] = { ...resDict[value["COBER_GEO"]], [value["TIME_PERIOD"]]: value["OBS_VALUE"] }
-    })
-    data3JSON["Series"][0]['OBSERVATIONS'].forEach(value => {
-        resDict[value["COBER_GEO"]] = { ...resDict[value["COBER_GEO"]], [value["TIME_PERIOD"]]: value["OBS_VALUE"] }
-    })
-    res.send(resDict);
+    try {
+        data1JSON["Series"][0]['OBSERVATIONS'].forEach(value => {
+            resDict[value["COBER_GEO"]] = { ...resDict[value["COBER_GEO"]], [value["TIME_PERIOD"]]: value["OBS_VALUE"] }
+        })
+
+        console.log("11111111111111111111111");
+
+        data2JSON["Series"][0]['OBSERVATIONS'].forEach(value => {
+            resDict[value["COBER_GEO"]] = { ...resDict[value["COBER_GEO"]], [value["TIME_PERIOD"]]: value["OBS_VALUE"] }
+        })
+
+        console.log("33333333333333333333333333");
+        data3JSON["Series"][0]['OBSERVATIONS'].forEach(value => {
+            resDict[value["COBER_GEO"]] = { ...resDict[value["COBER_GEO"]], [value["TIME_PERIOD"]]: value["OBS_VALUE"] }
+        })
+
+        console.log("2222222222222222222222222");
+        res.send(resDict);
+    } catch (error) {
+        console.log(error);
+        res.send({});
+    }
 
 })
 

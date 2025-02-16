@@ -22,24 +22,30 @@ export function AppProvider({ children }) {
     const [indicator, setIndicator] = useState("1002000001");
     const [indicatorInfo, setIndicatorInfo] = useState({});
     const [period, setPeriod] = useState("2020");
-    const [infoContent, setInfoContent] = useState("nada");
+    const [infoContent, setInfoContent] = useState(null);
 
     const updateInfoContent = (selectedCountry) => {
         setInfoContent(indicatorInfo[stateID[selectedCountry]][period]);
     }
 
+    // Parte encargada de cambiar el cursor a uno de carga.
+    const [isLoading, setIsLoading] = useState(false);
+
     useEffect(() => {
+        setIsLoading(true);
         fetch(`http://localhost:3000/info?indicator=${indicator}`)
             .then(res => res.json())
             .then(data => {
-                console.info("Ya se subio la nueva info");
-                setIndicatorInfo(data)
+                setIndicatorInfo(data);
             })
             .catch(error => console.log("ERROR FATAL", error))
+            .finally(() => {
+                setIsLoading(false);
+            })
     }, [indicator]);
 
     return (
-        <AppContext.Provider value={{ infoBoxX, infoBoxY, handleMouseMove, showInfoBox, setShowInfoBox, infoContent, updateInfoContent }}>
+        <AppContext.Provider value={{ infoBoxX, infoBoxY, handleMouseMove, showInfoBox, setShowInfoBox, infoContent, updateInfoContent, indicatorInfo, period, indicator, setIndicator, setPeriod, isLoading }}>
             {children}
         </AppContext.Provider>
     )

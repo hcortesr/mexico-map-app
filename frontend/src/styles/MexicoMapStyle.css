@@ -1,24 +1,11 @@
-main {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    /* background-color: red; */
-
-}
-
 #MexicoMapContainer {
     /* background-color: red; */
     color: green;
 
 }
 
-
-
 #info-map {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
 }
