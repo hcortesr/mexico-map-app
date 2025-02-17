@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const path = require('path');
 
 const corsOptions = {
     origin: ["http://localhost:5173"],
@@ -54,8 +55,10 @@ const STATE_STRING_3 = "07000020,07000021,07000022,07000023,07000024,07000025,07
 const app = express();
 
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(morgan('dev'));
+
+app.use(express.static(path.join(__dirname, "frontend", "dist")));
 
 app.get('/info', async (req, res) => { // Población total: 1002000001 | El 'fetch' solo funciona con 16 estados a la vez.
     const { indicator } = req.query
@@ -106,6 +109,11 @@ app.get('/info', async (req, res) => { // Población total: 1002000001 | El 'fet
     }
 
 })
+app.get('*', (req, res) => {
+    const rute = path.join(__dirname, "frontend", "dist");
+    res.sendFile(rute);
+})
+
 
 app.listen(3000);
 console.log("http://localhost:3000/");
