@@ -41,7 +41,7 @@ function App() {
       <header className='text-center text-2x p-6'>
         <h1 className='text-black font-bold'>Map application</h1>
       </header>
-      <div className='flex justify-evenly md:blockg'>
+      <div className='flex justify-evenly md:block'>
         <ListIndicators className="rounded-md border-2 p-1 md:ml-10 border-black text-lg" />
         <PeriodSelector className="rounded-md border-2 p-1 md:ml-3 border-black text-lg" />
       </div>

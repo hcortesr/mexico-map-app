@@ -35,7 +35,7 @@ export function AppProvider({ children }) {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`http://localhost:3000/info?indicator=${indicator}`)
+        fetch(`/info?indicator=${indicator}`)
             .then(res => res.json())
             .then(data => {
                 setIndicatorInfo(data);
